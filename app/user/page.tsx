@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import LoginForm from "@/components/LoginForm";
 import UpdateUserForm from "@/components/UpdateForm";
+import UpdatePasswordForm from "@/components/UpdatePasswordForm";
 import LogoutButton from "@/components/LogoutButton";
 import { Box, Typography } from "@mui/material";
 
@@ -26,6 +27,10 @@ const UserPage = () => {
 						Welcome, {user?.name || "User"}
 					</Typography>
 					<UpdateUserForm />
+					<Typography variant="h5" sx={{ marginTop: 4, marginBottom: 2 }}>
+						Update Password
+					</Typography>
+					<UpdatePasswordForm />
 					<Box sx={{ marginTop: 4 }}>
 						<LogoutButton />
 					</Box>

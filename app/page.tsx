@@ -23,10 +23,10 @@ const HomePage = () => {
         gap: 2,
       }}
     >
-      <Typography variant="h2" component="h1">
+      <Typography color="primary" variant="h2" component="h1">
         Welcome to E-Buddy
       </Typography>
-      <Typography variant="body1" sx={{ marginBottom: 4 }}>
+      <Typography color="secondary" variant="body1" sx={{ marginBottom: 4 }}>
         Manage your account seamlessly with E-Buddy!
       </Typography>
       <Button variant="contained" size="large" onClick={navigateToUserPage}>
