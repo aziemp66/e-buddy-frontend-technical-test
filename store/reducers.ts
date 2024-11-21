@@ -1,67 +1,60 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { User } from "../apis/user";
-import { fetchUser } from "../apis/userApi";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "@/apis/user";
 
 interface UserState {
-	data: User | null;
+	user: User | null;
 	token: string | null;
 	loading: boolean;
-	error: string | null;
+	successMessage: string | null;
+	errorMessage: string | null;
 }
 
 const initialState: UserState = {
-	data: null,
+	user: null,
 	token: null,
 	loading: false,
-	error: null,
+	successMessage: null,
+	errorMessage: null,
 };
 
-export const fetchUserData = createAsyncThunk<
-	User,
-	string,
-	{ rejectValue: string }
->("user/fetchUserData", async (id, { rejectWithValue }) => {
-	try {
-		const response = await fetchUser(id);
-		return response;
-	} catch (error: unknown) {
-		if (error instanceof Error) {
-			return rejectWithValue(error.message);
-		}
-		return rejectWithValue("An unknown error occurred");
-	}
-});
-
-const userSlice = createSlice({
+export const userSlice = createSlice({
 	name: "user",
 	initialState,
 	reducers: {
-		setToken(state, action: PayloadAction<string>) {
+		setUser: (state, action: PayloadAction<User>) => {
+			state.user = action.payload;
+			state.successMessage = "User fetched successfully!";
+			state.errorMessage = null;
+			state.loading = false;
+		},
+		setToken: (state, action: PayloadAction<string>) => {
 			state.token = action.payload;
 		},
-		clearUser(state) {
-			state.data = null;
-			state.token = null;
-			state.loading = false;
-			state.error = null;
+		startLoading: (state) => {
+			state.loading = true;
+			state.successMessage = null;
+			state.errorMessage = null;
 		},
-	},
-	extraReducers: (builder) => {
-		builder
-			.addCase(fetchUserData.pending, (state) => {
-				state.loading = true;
-			})
-			.addCase(fetchUserData.fulfilled, (state, action: PayloadAction<User>) => {
-				state.loading = false;
-				state.data = action.payload;
-				state.error = null;
-			})
-			.addCase(fetchUserData.rejected, (state, action: PayloadAction<string | undefined>) => {
-				state.loading = false;
-				state.error = action.payload || "An unknown error occurred";
-			});
+		setError: (state, action: PayloadAction<string>) => {
+			state.errorMessage = action.payload;
+			state.loading = false;
+		},
+		setSuccess: (state, action: PayloadAction<string>) => {
+			state.successMessage = action.payload;
+			state.loading = false;
+		},
+		clearUser: (state) => {
+			state.user = null;
+			state.token = null;
+			state.successMessage = null;
+			state.errorMessage = null;
+			state.loading = false;
+		},
 	},
 });
 
-export const { setToken, clearUser } = userSlice.actions;
-export default userSlice.reducer;
+// Export actions
+export const { setUser, setToken, startLoading, setError, setSuccess, clearUser } = userSlice.actions;
+
+// Export reducer
+export const userReducer = userSlice.reducer;

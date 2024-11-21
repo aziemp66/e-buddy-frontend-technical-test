@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# **Frontend Repository**
 
-## Getting Started
+This is the frontend application for managing user accounts and authentication. It is built using **Next.js** and integrates with **Firebase** for authentication and backend communication.
 
-First, run the development server:
+---
 
+## **Getting Started**
+
+### **Prerequisites**
+Ensure you have the following installed on your system:
+- **Node.js** (v16 or later)
+- **pnpm** (v8 or later)
+
+---
+
+### **Setup Instructions**
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-username/frontend-repo.git
+   cd frontend-repo
+   ```
+
+2. **Install Dependencies**
+   Use `pnpm` to install the project dependencies:
+   ```bash
+   pnpm install
+   ```
+
+3. **Set Up Environment Variables**
+   Create a `.env.local` file in the root directory with the following content:
+
+   ```env
+   NEXT_PUBLIC_API_URL=http://localhost:5001/<YOUR-PROJECT-ID>/us-central1/users
+   NEXT_PUBLIC_FIREBASE_API_KEY=<YOUR-FIREBASE-API-KEY>
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=<YOUR-FIREBASE-AUTH-DOMAIN>
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=<YOUR-FIREBASE-PROJECT-ID>
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=<YOUR-FIREBASE-STORAGE-BUCKET>
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=<YOUR-MESSAGING-SENDER-ID>
+   NEXT_PUBLIC_FIREBASE_APP_ID=<YOUR-APP-ID>
+   ```
+
+   Replace `<YOUR-PROJECT-ID>` and other placeholders with the actual values from your Firebase project settings.
+
+4. **Start the Development Server**
+   Run the development server:
+   ```bash
+   pnpm dev
+   ```
+
+   Open your browser and navigate to:
+   ```
+   http://localhost:3000
+   ```
+
+---
+
+## **Testing**
+
+### **Run Linting**
+To check for code issues, run:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## **Deployment**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **Build for Production**
+To build the project for production, run:
+```bash
+   pnpm build
+```
 
-## Learn More
+### **Start the Production Server**
+After building, run the production server:
+```bash
+   pnpm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## **Project Structure**
+```plaintext
+frontend-repo/
+├── apis/            # API abstraction layer
+├── components/      # React components
+├── store/           # Redux state management
+├── config/          # Configuration (including firebase config)
+├── pages/           # Next.js pages
+├── public/          # Static assets
+├── .env.local       # Environment variables
+├── next.config.js   # Next.js configuration
+└── README.md        # Project documentation
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## **Features**
+- User login and authentication with Firebase.
+- State management using Redux.
+- Material-UI for modern and responsive UI.
+- Integration with backend API for user profile management.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## **License**
+This project is licensed under the MIT License.
